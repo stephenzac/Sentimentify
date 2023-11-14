@@ -1,14 +1,18 @@
-from flask import Flask
+from flask import Flask, jsonify
+from flask_cors import CORS
 
 app = Flask(__name__)
 
+# Change for production?
+CORS(app) 
 
-@app.route("/")
+
+@app.route("/", methods=["GET"])
 def main_page():
     data = {
         "Hello": "World"
     }
-    return data
+    return jsonify(data)
 
 
 if __name__ == "__main__":
