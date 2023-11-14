@@ -15,5 +15,14 @@ def main_page():
     return jsonify(data)
 
 
+@app.route("/song-sentiment", methods=["GET"])
+def song_sentiment():
+    data = {
+        "song_title": "name",
+        "sentiment": "positive"
+    }
+    return jsonify(data)
+
+
 if __name__ == "__main__":
     app.run()
