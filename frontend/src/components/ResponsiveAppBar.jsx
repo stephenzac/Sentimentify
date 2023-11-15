@@ -14,16 +14,17 @@ import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import AudiotrackIcon from '@mui/icons-material/Audiotrack';
 import EmojiEmotionsIcon from '@mui/icons-material/EmojiEmotions';
-import SpotifyLogoIcon from "./SpotifyLogoIcon.jsx";
 import SpotifyLogo from "../assets/spotify-logo.png";
 
+import { useNavigate } from "react-router-dom";
 
 const pages = ['Enter Playlist Link', 'About'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+
 
 function ResponsiveAppBar() {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
+    const navigate = useNavigate();
 
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
@@ -40,8 +41,22 @@ function ResponsiveAppBar() {
         setAnchorElUser(null);
     };
 
+    const navigateToAboutPage = () => {
+        navigate('/about');
+        handleCloseNavMenu();
+    }
+
+    const navigateToHomePage = () => {
+        navigate('/');
+        handleCloseNavMenu();
+    }
+
+    const AppbarStyle = {
+        backgroundColor: 'black'
+    };
+
     return (
-        <AppBar position="static">
+        <AppBar position="static" style={AppbarStyle}>
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
                     <EmojiEmotionsIcon sx={{ display: { xs: 'none', md: 'flex' } }} />
@@ -50,7 +65,6 @@ function ResponsiveAppBar() {
                         variant="h6"
                         noWrap
                         component="a"
-                        href="#app-bar-with-responsive-menu"
                         sx={{
                             mr: 2,
                             display: { xs: 'none', md: 'flex' },
@@ -93,11 +107,13 @@ function ResponsiveAppBar() {
                                 display: { xs: 'block', md: 'none' },
                             }}
                         >
-                            {pages.map((page) => (
-                                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                                    <Typography textAlign="center">{page}</Typography>
-                                </MenuItem>
-                            ))}
+                            <MenuItem key="Enter Playlist" onClick={navigateToHomePage}>
+                                <Typography textAlign="center">Enter Playlist</Typography>
+                            </MenuItem>
+                            <MenuItem key="About" onClick={navigateToAboutPage}>
+                                <Typography textAlign="center">About</Typography>
+                            </MenuItem>
+
                         </Menu>
                     </Box>
                     <EmojiEmotionsIcon sx={{ display: { xs: 'flex', md: 'none' }}} />
@@ -107,7 +123,6 @@ function ResponsiveAppBar() {
                         variant="h5"
                         noWrap
                         component="a"
-                        href="#app-bar-with-responsive-menu"
                         sx={{
                             mr: 2,
                             display: { xs: 'flex', md: 'none' },
@@ -122,15 +137,12 @@ function ResponsiveAppBar() {
                         Sentimentify
                     </Typography>
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-                        {pages.map((page) => (
-                            <Button
-                                key={page}
-                                onClick={handleCloseNavMenu}
-                                sx={{ my: 2, color: 'white', display: 'block' }}
-                            >
-                                {page}
-                            </Button>
-                        ))}
+                        <MenuItem key="Enter Playlist" onClick={navigateToHomePage}>
+                            <Typography textAlign="center">Enter Playlist</Typography>
+                        </MenuItem>
+                        <MenuItem key="About" onClick={navigateToAboutPage}>
+                            <Typography textAlign="center">About</Typography>
+                        </MenuItem>
                     </Box>
 
                 </Toolbar>

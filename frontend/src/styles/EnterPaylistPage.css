@@ -1,0 +1,39 @@
+
+#enter-playlist-page {
+    border: 1px solid gray;
+    border-radius: 5px;
+    background-color: gray;
+    box-shadow: 0px 0px 10px 4px lightgray;
+    margin: 2em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.title-logo {
+    margin-top: 2em;
+    border-radius: 50%;
+    width: 10%;
+    min-width: 5em;
+
+}
+
+.title {
+    font-family: "Apple SD Gothic Neo", serif;
+    font-size: 2em;
+
+}
+
+.playlist-link-input {
+    background-color: dimgray;
+    border: 2px solid black;
+    border-radius: 5px;
+    font-size: 1em;
+    width: 80%;
+    margin-bottom: 3em;
+    box-shadow: 0px 0px 5px 4px lightgrey;
+    padding: 0.5em;
+    max-width: 15em;
+
+
+}

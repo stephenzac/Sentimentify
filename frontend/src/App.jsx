@@ -1,13 +1,20 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 import  ResponsiveAppBar  from "./components/ResponsiveAppBar.jsx";
+
+import { Route, Routes } from "react-router-dom";
+import AboutPage from "./pages/AboutPage.jsx";
+import EnterPlaylistPage from "./pages/EnterPlaylistPage.jsx";
+
 function App() {
 
   return (
-    <div>
-      <ResponsiveAppBar />
+    <div id="main-app">
+        <ResponsiveAppBar />
+        <Routes>
+            <Route path="/" element={<EnterPlaylistPage />}/>
+            <Route path="/about" element={<AboutPage />} />
+        </Routes>
+
     </div>
   )
 }
