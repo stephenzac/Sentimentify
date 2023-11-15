@@ -19,7 +19,7 @@ export default function BasicAccordion() {
                     aria-controls="panel1a-content"
                     id="panel1a-header"
                 >
-                    <Typography>Software Description</Typography>
+                    <Typography>Description</Typography>
                 </AccordionSummary>
                 <AccordionDetails>
                     <Typography>
