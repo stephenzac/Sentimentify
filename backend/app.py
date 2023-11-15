@@ -1,5 +1,6 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 from flask_cors import CORS
+import main
 
 app = Flask(__name__)
 
@@ -9,19 +10,17 @@ CORS(app)
 
 @app.route("/", methods=["GET"])
 def main_page():
-    data = {
-        "Hello": "World"
-    }
-    return jsonify(data)
+    return {}
 
 
-@app.route("/song-sentiment", methods=["GET"])
-def song_sentiment():
-    data = {
-        "song_title": "name",
-        "sentiment": "positive"
-    }
-    return jsonify(data)
+@app.route("/send-playlist", methods=["POST"])
+def send_playlist_link():
+    data = request.get_json()
+    data = data["link"]
+
+    backend_response = main.run(data)
+    return backend_response.json()
+
 
 
 if __name__ == "__main__":
