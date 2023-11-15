@@ -1,0 +1,29 @@
+
+.about-page {
+    border: 1px solid gray;
+    border-radius: 5px;
+    background-color: gray;
+    box-shadow: 0px 0px 10px 4px lightgray;
+    margin: 2em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.creators-photo {
+    width: 50%;
+    max-width: 10em;
+    margin-top: 1em;
+    border-radius: 10px;
+    border: 3px solid lightgrey;
+}
+.about-page h3 {
+
+    margin-bottom: 0;
+}
+
+.about-page p {
+    width: 70%;
+
+}
