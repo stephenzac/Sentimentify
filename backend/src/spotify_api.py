@@ -63,6 +63,11 @@ def get_title_and_artist(song_id: str) -> (str, str):
 
 
 def get_playlist_songs(playlist_id: str) -> list:
+    """
+    Given a playlist ID, make a request to the Spotify API
+    to get an object containing the songs of the playlist,
+    and return a list of the names of every song in the playlist
+    """
     endpoint = f"playlists/{playlist_id}/tracks"
     response = make_spotify_request(endpoint)
     songs_list = [song["track"] for song in response["items"]]
@@ -70,6 +75,10 @@ def get_playlist_songs(playlist_id: str) -> list:
 
 
 def get_track_audio_features(song_id: str) -> dict:
+    """
+    Given a song ID, make a request to the Spotify API for
+    an object containing the audio features of a song
+    """
     endpoint = f"audio-features/{song_id}"
     response = make_spotify_request(endpoint)
     return response
