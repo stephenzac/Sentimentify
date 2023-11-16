@@ -5,24 +5,28 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
-export default function BasicAccordion() {
-    const accordianStyle = {
-        backgroundColor: "gray",
-        border: "1px solid dimgray"
-    }
+
+export default function DescriptionAccordion() {
 
     return (
         <div>
-            <Accordion style={accordianStyle}>
+            <Accordion sx={{
+                backgroundColor: "rgb(128, 128, 128)",
+                border: "1px solid dimgray"}}>
                 <AccordionSummary
                     expandIcon={<ExpandMoreIcon />}
                     aria-controls="panel1a-content"
                     id="panel1a-header"
                 >
-                    <Typography>Description</Typography>
+                    <Typography sx={{
+                        fontFamily: "Charter, serif",
+                        fontWeight: "bold"
+                    }}>Description</Typography>
                 </AccordionSummary>
                 <AccordionDetails>
-                    <Typography>
+                    <Typography sx={{
+                        fontFamily: "Charter, serif",
+                        fontWeight: "bold"}}>
                         Welcome to Sentimentify! This is a software that takes your spotify playlist link and puts all your songs through a sentiment tester. Then, we will tell you the mood of the songs.
                     </Typography>
                 </AccordionDetails>
