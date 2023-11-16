@@ -42,7 +42,7 @@ def get_lyrics(item: dict) -> str:
                         # print(f"No lyrics for {title} - {artist}")
                         return None
                     
-                    # print(f"Found lyrics for {title} - {artist}")
+                    print(f"Found lyrics for {title} - {artist}")
                     found = True
                     return song_lyrics
             if found:
@@ -52,30 +52,27 @@ def get_lyrics(item: dict) -> str:
         return None
 
 
-def process_songs(track_list: list) -> dict:
+def process_songs(item: dict) -> dict:
     """
-    Go through each song in the playlist and analyze each one
+    Analyze the lyrics and audio features of a track in the playlist
     """
     song_analyzer = SentimentAnalyzer()
 
-    for item in track_list:
+    # for item in track_list:
 
-        if item["track"] == None:
-            continue
+    if item["track"] == None:
+        return None
 
-        lyrics = get_lyrics(item)
+    lyrics = get_lyrics(item)
 
-        track_id = item["track"]["id"]
-        track_attributes = spotify.get_track_audio_features(track_id)
+    track_id = item["track"]["id"]
+    track_attributes = spotify.get_track_audio_features(track_id)
 
-        # Songs without lyrics will be analyzed using just their attributes
-        if lyrics != None:
-            print(f"{lyrics}\n----------------------------------------------")
-            pass
-            # send lyrics to michelle's class
+    # Songs without lyrics will be analyzed using just their attributes
+    if lyrics != None:
+        pass
+        # send lyrics to michelle's class
         
-    # return song_analyzer.final_dict
-
         
 def run(playlist_link: str) -> dict:
     """
@@ -93,11 +90,12 @@ def run(playlist_link: str) -> dict:
     playlist_songs = spotify.get_playlist_songs(playlist_id)
     track_list = playlist_songs["items"]
 
-    # calculated_playlist = 
+    # MULTIPROCESSING!!!!!!!!
+    final_calc = SentimentAnalyzer()
+    with concurrent.futures.ProcessPoolExecutor() as executor:
+        calculcated_playlist_sentiment = list(executor.map(process_songs, track_list))
 
-    calculated_playlist = process_songs(track_list)
-
-    return calculated_playlist
+    # return calculcated_playlist_sentiment
 
 
 """
