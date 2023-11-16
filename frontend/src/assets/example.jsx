@@ -1,11 +1,31 @@
 
-const example = {
+const exampleData = {
     "playlist": {
-        "name of the playlist" : {"mood":"positive", "energy":"high"}
+        "GUTS": {
+            "mood": "negative", "energy": "high"
+        }
     },
-    "songs" : {
-        "glimpse of us": {"mood": "positive", "energy": "high"},
-        "stacy's mom": {"mood": "negative", "energy": "low"}
+    "songs": {
+        "Glimpse Of Us": {"mood": "negative", "energy": "low"},
+        "Stacy's Mom": {"mood": "positive", "energy": "high"},
+        "Locked Out Of Heaven": {"mood": "positive", "energy": "high"},
+        "Dandelions": {"mood": "positive", "energy": "medium"},
+        "Word Up": {"mood": "neutral", "energy": "medium"},
+        "Very long song that doesn't fit in this table well": {"mood": "neutral", "energy": "medium"},
+        "Bad Romance": {"mood": "neutral", "energy": "high"},
+
+    },
+    "moodPercentages": {
+        "happy": 0.1,
+        "neutral": 0.5,
+        "sad": 0.4
+    },
+    "energyPercentages": {
+        "high": 0.4,
+        "medium": 0.1,
+        "low": 0.5
     }
 
 }
+
+export default exampleData;
