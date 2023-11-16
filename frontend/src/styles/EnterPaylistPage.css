@@ -20,7 +20,9 @@
 
 .title {
     font-family: "Apple SD Gothic Neo", serif;
-    font-size: 2em;
+    font-size: 1.5em;
+    margin-left: 1em;
+    margin-right: 1em;
 
 }
 
@@ -52,3 +54,4 @@
     cursor: pointer;
     background-color: dimgray;
 }
+
