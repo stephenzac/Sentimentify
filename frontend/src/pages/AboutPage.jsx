@@ -7,7 +7,9 @@ function AboutPage() {
             <h3>About Us</h3>
             <img className="creators-photo" src={usPhoto} alt="A photo of creators" />
             <h3>Who we are</h3>
-            <p>We are all UC Irvine studying Computer Science. We play the same instrument (the trombone).</p>
+            <p>We are all students at UC Irvine studying Computer Science.
+                We play the same instrument (the trombone).
+                We are participating in ICSSC's 2023 WebJam as a group</p>
         </div>
     )
 
