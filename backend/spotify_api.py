@@ -52,13 +52,13 @@ def get_spotify_auth_token() -> str:
         print(response.text)
 
 
-def get_title_and_artist(playlist_item: dict) -> (str, str):
+def get_title_and_artist(playlist_item: dict) -> (str, [str]):
     """
     Given a playlist item (song), extract and return
     a tuple of the name of the song and the artist
     """
 
-    return ((playlist_item["track"]["name"], playlist_item["track"]["artists"][0]["name"]))
+    return ((playlist_item["track"]["name"], [artist["name"] for artist in playlist_item["track"]["artists"]]))
 
 
 def get_playlist_songs(playlist_id: str) -> list:
@@ -73,7 +73,6 @@ def get_playlist_songs(playlist_id: str) -> list:
     if response == None:
         return None
     
-    # songs_list = [song["track"]["name"] for song in response["items"]]
     return response
 
 
