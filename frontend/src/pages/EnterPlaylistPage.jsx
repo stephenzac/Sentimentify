@@ -3,7 +3,7 @@
 import "../styles/EnterPaylistPage.css";
 import SpotifyLogo from "../assets/spotify-logo.png";
 
-import BasicAccordion from "../components/BasicAccordian.jsx";
+import DescriptionAccordion from "../components/DescriptionAccordian.jsx";
 import {useState} from "react";
 import axios from "axios";
 
@@ -54,12 +54,12 @@ function EnterPlaylistPage() {
             {status === 0 && <h1 className="title">Enter playlist link</h1> }
             {status === 0 && <input className="playlist-link-input" name="playlist-link" value={link} onChange={onInputChange}/> }
             {status === 0 && <button className="submit-button" onClick={sendLink}>Get Sentiment!</button> }
-            {status === 0 && <BasicAccordion /> }
+            {status === 0 && <DescriptionAccordion /> }
 
             {status === 1 && <img className="title-logo" src={SpotifyLogo} alt="spotify logo" /> }
             {status === 1 && <h1 className="title">Processing...</h1>}
             {status === 1 && <LinearIndeterminate />}
-            {status === 1 && <BasicAccordion /> }
+            {status === 1 && <DescriptionAccordion /> }
 
             {status === -1 && <img className="title-logo" src={SpotifyLogo} alt="spotify logo" /> }
             {status === -1 && <h1 className="title">Oops something went wrong</h1>}

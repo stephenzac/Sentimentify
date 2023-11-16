@@ -51,12 +51,9 @@ function ResponsiveAppBar() {
         handleCloseNavMenu();
     }
 
-    const AppbarStyle = {
-        backgroundColor: 'black'
-    };
 
     return (
-        <AppBar position="static" style={AppbarStyle}>
+        <AppBar position="static" sx={{backgroundColor: "dimgray"}}>
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
                     <EmojiEmotionsIcon sx={{ display: { xs: 'none', md: 'flex' } }} />
@@ -78,7 +75,7 @@ function ResponsiveAppBar() {
                         Sentimentify
                     </Typography>
 
-                    <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+                    <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' }}}>
                         <IconButton
                             size="large"
                             aria-label="account of current user"
@@ -104,14 +101,14 @@ function ResponsiveAppBar() {
                             open={Boolean(anchorElNav)}
                             onClose={handleCloseNavMenu}
                             sx={{
-                                display: { xs: 'block', md: 'none' },
+                                display: { xs: 'block', md: 'none' }
                             }}
                         >
                             <MenuItem key="Enter Playlist" onClick={navigateToHomePage}>
-                                <Typography textAlign="center">Enter Playlist</Typography>
+                                <Typography textAlign="center" sx={{fontFamily: "Heiti SC, serif"}}>Enter Playlist</Typography>
                             </MenuItem>
                             <MenuItem key="About" onClick={navigateToAboutPage}>
-                                <Typography textAlign="center">About</Typography>
+                                <Typography textAlign="center" sx={{fontFamily: "Heiti SC, serif"}}>About</Typography>
                             </MenuItem>
 
                         </Menu>
@@ -138,10 +135,10 @@ function ResponsiveAppBar() {
                     </Typography>
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                         <MenuItem key="Enter Playlist" onClick={navigateToHomePage}>
-                            <Typography textAlign="center">Enter Playlist</Typography>
+                            <Typography textAlign="center" sx={{fontFamily: "Heiti SC, serif"}} >Enter Playlist</Typography>
                         </MenuItem>
                         <MenuItem key="About" onClick={navigateToAboutPage}>
-                            <Typography textAlign="center">About</Typography>
+                            <Typography textAlign="center" sx={{fontFamily: "Heiti SC, serif"}}>About</Typography>
                         </MenuItem>
                     </Box>
 

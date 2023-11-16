@@ -21,11 +21,11 @@
     border: 3px solid lightgrey;
 }
 .about-page h3 {
-
+    font-family: Charter, serif;
     margin-bottom: 0;
 }
 
 .about-page p {
     width: 70%;
-
+    font-family: Charter, serif;
 }
