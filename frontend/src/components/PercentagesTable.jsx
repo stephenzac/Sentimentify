@@ -6,14 +6,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-
-import InsertEmoticonRoundedIcon from '@mui/icons-material/InsertEmoticonRounded';
-import SentimentNeutralRoundedIcon from '@mui/icons-material/SentimentNeutralRounded';
-import SentimentDissatisfiedRoundedIcon from '@mui/icons-material/SentimentDissatisfiedRounded';
-import BatteryChargingFullRoundedIcon from '@mui/icons-material/BatteryChargingFullRounded';
-import BatteryCharging50RoundedIcon from '@mui/icons-material/BatteryCharging50Rounded';
-import Battery1BarRoundedIcon from '@mui/icons-material/Battery1BarRounded';
-
+import "../styles/TableStyles.css";
 
 export default function PercentagesTable(data) {
     let fullData = data.table;
@@ -21,15 +14,12 @@ export default function PercentagesTable(data) {
     const energyPercentages = fullData.energyPercentages;
     console.log(moodPercentages);
 
-    const categoryRowStyle = {
-        backgroundColor: "lightgray"
-    }
 
     return (
         <TableContainer component={Paper} >
             <Table sx={{ minWidth: 20 }} aria-label="simple table">
                 <TableHead>
-                    <TableRow style={categoryRowStyle}>
+                    <TableRow className="category-row">
                         <TableCell> Mood Category</TableCell>
                         <TableCell align="right">Percentage</TableCell>
 
@@ -53,7 +43,7 @@ export default function PercentagesTable(data) {
 
                 </TableBody>
                 <TableHead>
-                    <TableRow style={categoryRowStyle}>
+                    <TableRow className="category-row">
                         <TableCell> Energy Category</TableCell>
                         <TableCell align="right">Percentage</TableCell>
 

@@ -13,24 +13,18 @@ import SentimentDissatisfiedRoundedIcon from '@mui/icons-material/SentimentDissa
 import BatteryChargingFullRoundedIcon from '@mui/icons-material/BatteryChargingFullRounded';
 import BatteryCharging50RoundedIcon from '@mui/icons-material/BatteryCharging50Rounded';
 import Battery1BarRoundedIcon from '@mui/icons-material/Battery1BarRounded';
-
+import "../styles/TableStyles.css";
 
 export default function PlaylistSentimentTable(data) {
     let fullData = data.table;
     const playlist = fullData.playlist;
-    const tableStyle= {
-        marginBottom: "3em"
-    }
 
-    const categoryRowStyle = {
-        backgroundColor: "lightgray"
-    }
 
     return (
-        <TableContainer component={Paper} style={tableStyle}>
+        <TableContainer component={Paper} className="space-below-table">
             <Table sx={{ minWidth: 20 }} aria-label="simple table">
                 <TableHead>
-                    <TableRow style={categoryRowStyle}>
+                    <TableRow className="category-row">
                         <TableCell>Playlist name</TableCell>
                         <TableCell align="right">mood</TableCell>
                         <TableCell align="right">energy</TableCell>

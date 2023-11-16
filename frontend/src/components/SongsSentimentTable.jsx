@@ -14,23 +14,21 @@ import BatteryChargingFullRoundedIcon from '@mui/icons-material/BatteryChargingF
 import BatteryCharging50RoundedIcon from '@mui/icons-material/BatteryCharging50Rounded';
 import Battery1BarRoundedIcon from '@mui/icons-material/Battery1BarRounded';
 
-
+import "../styles/TableStyles.css";
 
 export default function SongsSentimentTable(data) {
     let fullData = data.table;
     const songs = fullData.songs;
-    const categoryRowStyle = {
-        backgroundColor: "lightgray"
-    }
+
     const tableStyle= {
         marginBottom: "3em"
     }
 
     return (
-        <TableContainer component={Paper} style={tableStyle}>
+        <TableContainer component={Paper} className="space-below-table">
             <Table sx={{ minWidth: 20 }} aria-label="simple table">
                 <TableHead>
-                    <TableRow style={categoryRowStyle}>
+                    <TableRow className="category-row">
                         <TableCell>Song name</TableCell>
                         <TableCell align="right">mood</TableCell>
                         <TableCell align="right">energy</TableCell>
