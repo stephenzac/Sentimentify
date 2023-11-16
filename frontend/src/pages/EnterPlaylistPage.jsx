@@ -30,10 +30,11 @@ function EnterPlaylistPage() {
             setStatus(1);
 
             // Make a request using Axios
-            const response = await axios.post('http://localhost:8000', link);
+            const response = await axios.post('http://localhost:5000/send-playlist', link);
             setLink("");
             console.log(link);
             // Set the fetched data to the state
+            setStatus(2);
             setData(response.data);
         } catch (error) {
             // Set an error if the request fails
