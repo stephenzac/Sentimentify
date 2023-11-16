@@ -26,6 +26,7 @@ def make_spotify_request(endpoint: str) -> dict:
         return data
     else:
         print(response.text)
+        return None
 
 
 def get_spotify_auth_token() -> str:
@@ -51,27 +52,29 @@ def get_spotify_auth_token() -> str:
         print(response.text)
 
 
-def get_title_and_artist(song_id: str) -> (str, str):
+def get_title_and_artist(playlist_item: dict) -> (str, str):
     """
-    Given a song ID, extract the song title and artist from
-    the track data returned by the Spotify API
+    Given a playlist item (song), extract and return
+    a tuple of the name of the song and the artist
     """
 
-    endpoint = f"tracks/{song_id}"
-    song_info = make_spotify_request(endpoint)
-    return (song_info["name"], song_info["artists"][0]["name"])
+    return ((playlist_item["track"]["name"], playlist_item["track"]["artists"][0]["name"]))
 
 
 def get_playlist_songs(playlist_id: str) -> list:
     """
     Given a playlist ID, make a request to the Spotify API
-    to get an object containing the songs of the playlist,
-    and return a list of the names of every song in the playlist
+    to get and return an object containing the songs of the playlist
     """
     endpoint = f"playlists/{playlist_id}/tracks"
+
     response = make_spotify_request(endpoint)
-    songs_list = [song["track"] for song in response["items"]]
-    return songs_list
+
+    if response == None:
+        return None
+    
+    # songs_list = [song["track"]["name"] for song in response["items"]]
+    return response
 
 
 def get_track_audio_features(song_id: str) -> dict:
@@ -82,3 +85,8 @@ def get_track_audio_features(song_id: str) -> dict:
     endpoint = f"audio-features/{song_id}"
     response = make_spotify_request(endpoint)
     return response
+
+
+if __name__ == "__main__":
+    # print(get_playlist_songs("4jetnIc7yJLUJsk1okSWMb"))
+    get_playlist_songs("4jetnIc7yJLUJsk1okSWMb")
