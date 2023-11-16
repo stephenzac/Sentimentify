@@ -76,6 +76,21 @@ def get_playlist_songs(playlist_id: str) -> list:
     return response
 
 
+def get_playlist_info(playlist_id: str) -> dict:
+    """
+    Given a playlist ID, make a request to the Spotify API
+    to get and return an object containing a playlist's details
+    """
+    endpoint = f"playlists/{playlist_id}"
+
+    response = make_spotify_request(endpoint)
+
+    if response == None:
+        return None
+    
+    return response
+
+
 def get_track_audio_features(song_id: str) -> dict:
     """
     Given a song ID, make a request to the Spotify API for
