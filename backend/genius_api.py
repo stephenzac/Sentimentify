@@ -26,7 +26,7 @@ def search_song(title: str, artist: str) -> dict:
     for the Genius API search endpoint, return the API JSON response
     """
     params = {
-        "q": f"{title} {artist}",
+        "q": f"{title} - {artist}",
         "access_token": "nyUlN2Ic0AqZlc-_5GCKg4AywxbB7ouKlU3cMK_veMa-V3YyJt74zpRxEnOwO2kC"
     }
 
