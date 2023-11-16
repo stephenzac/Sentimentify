@@ -1,6 +1,7 @@
+import main
 from flask import Flask, jsonify, request
 from flask_cors import CORS
-import main
+
 
 app = Flask(__name__)
 
@@ -19,6 +20,11 @@ def send_playlist_link():
     data = data["link"]
 
     backend_response = main.run(data)
+
+    # return status code 400 for invalid playlist links
+    if backend_response == None:
+        return "Invalid playlist link", 400
+    
     return backend_response.json()
 
 
