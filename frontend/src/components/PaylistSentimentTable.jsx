@@ -14,9 +14,11 @@ import BatteryChargingFullRoundedIcon from '@mui/icons-material/BatteryChargingF
 import BatteryCharging50RoundedIcon from '@mui/icons-material/BatteryCharging50Rounded';
 import Battery1BarRoundedIcon from '@mui/icons-material/Battery1BarRounded';
 import "../styles/TableStyles.css";
+import nullData from "../assets/NullData.jsx";
 
 export default function PlaylistSentimentTable(data) {
     let fullData = data.table;
+    if (fullData === null) { fullData = nullData }
     const playlist = fullData.playlist;
 
 

@@ -16,7 +16,7 @@ import exampleData from "../assets/example.jsx";
 function EnterPlaylistPage() {
     const [link, setLink] = useState("");
     const [status, setStatus] = useState(3);
-    const [data, setData] = useState(null);
+    const [data, setData] = useState(exampleData);
     const onInputChange = (event) => {
         setLink(event.target.value);
         console.log(event.target.value);
@@ -69,9 +69,9 @@ function EnterPlaylistPage() {
             {status === 2 && <h1 className="title">Spotify playlist does not exist</h1>}
             {status === 2 && <button className="submit-button" onClick={returnHome}>Back to start!</button> }
 
-            {status === 3 && <PlaylistSentimentTable table={exampleData} />}
-            {status === 3 && <SongsSentimentTable table={exampleData} /> }
-            {status === 3 && <PercentagesTable table={exampleData} /> }
+            {status === 3 && <PlaylistSentimentTable table={data} />}
+            {status === 3 && <SongsSentimentTable table={data} /> }
+            {status === 3 && <PercentagesTable table={data} /> }
             {status === 3 && <button className="submit-button" onClick={returnHome}>Back to start!</button> }
 
 

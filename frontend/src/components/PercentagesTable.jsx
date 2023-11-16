@@ -7,9 +7,10 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import "../styles/TableStyles.css";
-
+import nullData from "../assets/NullData.jsx";
 export default function PercentagesTable(data) {
     let fullData = data.table;
+    if (fullData === null) { fullData = nullData}
     const moodPercentages = fullData.moodPercentages;
     const energyPercentages = fullData.energyPercentages;
     console.log(moodPercentages);

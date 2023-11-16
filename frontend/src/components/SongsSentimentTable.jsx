@@ -13,11 +13,14 @@ import SentimentDissatisfiedRoundedIcon from '@mui/icons-material/SentimentDissa
 import BatteryChargingFullRoundedIcon from '@mui/icons-material/BatteryChargingFullRounded';
 import BatteryCharging50RoundedIcon from '@mui/icons-material/BatteryCharging50Rounded';
 import Battery1BarRoundedIcon from '@mui/icons-material/Battery1BarRounded';
-
+import nullData from "../assets/NullData.jsx";
 import "../styles/TableStyles.css";
+
 
 export default function SongsSentimentTable(data) {
     let fullData = data.table;
+    if (fullData === null) { fullData = nullData}
+
     const songs = fullData.songs;
 
     const tableStyle= {
