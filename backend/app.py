@@ -25,6 +25,7 @@ def send_playlist_link():
 
     # return status code 400 for invalid playlist links
     if backend_response == None:
+        print("Here")
         return jsonify({"reason": "invalid playlist link"}), 400
     
     return jsonify(backend_response)

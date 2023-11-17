@@ -88,8 +88,12 @@ def run(playlist_link: str) -> dict:
     if playlist_id == None:
         return None
     
-    playlist_name = spotify.get_playlist_info(playlist_id)["name"]
-    # print(f"Playlist name: {playlist_name}")
+    playlist_response = spotify.get_playlist_info(playlist_id)
+
+    if playlist_response == None:
+        return None
+    
+    playlist_name = playlist_response["name"]
 
     # Playlist songs
     playlist_songs = spotify.get_playlist_songs(playlist_id)
