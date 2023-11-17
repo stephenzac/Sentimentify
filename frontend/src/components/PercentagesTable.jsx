@@ -36,7 +36,7 @@ export default function PercentagesTable(data) {
                                 {category}
                             </TableCell>
 
-                            <TableCell align="right">{percent * 100}%</TableCell>
+                            <TableCell align="right">{percent}</TableCell>
 
                         </TableRow>
                     ))}
@@ -60,7 +60,7 @@ export default function PercentagesTable(data) {
                                 {category}
                             </TableCell>
 
-                            <TableCell align="right">{percent * 100}%</TableCell>
+                            <TableCell align="right">{percent}</TableCell>
 
                         </TableRow>
                     ))}

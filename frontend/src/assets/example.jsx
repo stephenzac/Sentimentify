@@ -16,14 +16,14 @@ const exampleData = {
 
     },
     "moodPercentages": {
-        "happy": 0.1,
-        "neutral": 0.5,
-        "sad": 0.4
+        "positive": "10%",
+        "neutral": "50%",
+        "negative": "40%"
     },
     "energyPercentages": {
-        "high": 0.4,
-        "medium": 0.1,
-        "low": 0.5
+        "high": "40%",
+        "medium": "10%",
+        "low": "50%"
     }
 
 }
