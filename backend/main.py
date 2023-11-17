@@ -105,11 +105,10 @@ def run(playlist_link: str) -> dict:
     with concurrent.futures.ProcessPoolExecutor() as executor:
         partial_process_songs = partial(process_songs, sentiment_dict=sentiment_dict)
         all_dicts = list(executor.map(partial_process_songs, track_list))
-
-    # print(all_dicts)
     
     for info_dict in all_dicts:
-        sentiment_dict.receive_information(info_dict)
+        if info_dict != None:
+            sentiment_dict.receive_information(info_dict)
 
     sentiment_dict.calculate_valence()
     sentiment_dict.calculate_compound_sentiment()
