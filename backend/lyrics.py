@@ -4,8 +4,8 @@ from bs4 import BeautifulSoup
 
 def get_song_lyrics(genius_endpoint: str) -> str:
     """
-    Web scrape genius.com using BeautifulSoup
-    to get the lyrics of a song
+    Get the lyrics of a song by using BeautifulSoup
+    to web scrape a genius.com page
     """
     url = "https://genius.com" + genius_endpoint
     page = requests.get(url)
