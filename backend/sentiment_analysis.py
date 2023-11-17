@@ -126,9 +126,9 @@ class SentimentAnalyzer:
         for song in self.song_mood_stats:
             playlistMood += self.song_mood_stats[song][2]
 
-        if playlistMood <= 0.33:
+        if playlistMood / self.num_songs <= 0.33:
             self.final_dict["playlist"][self.playlistName]["mood"] = "negative"
-        elif playlistMood >= 0.66:
+        elif playlistMood / self.num_songs >= 0.66:
             self.final_dict["playlist"][self.playlistName]["mood"] = "positive"
         else:
             self.final_dict["playlist"][self.playlistName]["mood"] = "neutral"
@@ -140,9 +140,9 @@ class SentimentAnalyzer:
         for song in self.song_mood_stats:
             playlistEnergy += self.song_mood_stats[song][3]
 
-        if playlistEnergy <= 0.33:
+        if playlistEnergy / self.num_songs <= 0.33:
             self.final_dict["playlist"][self.playlistName]["energy"] = "low"
-        elif playlistEnergy >= 0.66:
+        elif playlistEnergy / self.num_songs >= 0.66:
             self.final_dict["playlist"][self.playlistName]["energy"] = "high"
         else:
             self.final_dict["playlist"][self.playlistName]["energy"] = "medium"
