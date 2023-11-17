@@ -66,9 +66,6 @@ function EnterPlaylistPage() {
             }
 
 
-
-            console.log("Error. Could not connect to server")
-            setStatus(-1);
         }
     }
 
