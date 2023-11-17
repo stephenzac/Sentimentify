@@ -17,7 +17,7 @@ def make_genius_request(endpoint: str, params: dict) -> dict:
         data = response.json()
         return data
     else:
-        print(response.text)
+        print(f"{response.text}")
 
 
 def search_song(title: str, artist: str) -> dict:
@@ -32,11 +32,3 @@ def search_song(title: str, artist: str) -> dict:
 
     response = make_genius_request("search", params)
     return response
-
-
-
-if __name__ == "__main__":
-    # print(search_song("glimpse", "joji")["response"]["hits"][0]["result"]["path"])
-    # make_genius_request({"q": "777 Bruno Mars"})
-    for thing in [("777", "bruno mars"), ("the scientist", "coldplay"), ("glimpse", "joji"), ("solar", "lorde"), ("fine by", "grammer")]:
-        print(search_song(thing[0], thing[1]))

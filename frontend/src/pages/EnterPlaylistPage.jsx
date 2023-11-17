@@ -15,7 +15,7 @@ import exampleData from "../assets/example.jsx";
 
 function EnterPlaylistPage() {
     const [link, setLink] = useState("");
-    const [status, setStatus] = useState(3);
+    const [status, setStatus] = useState(0);
     const [data, setData] = useState(exampleData);
     const onInputChange = (event) => {
         setLink(event.target.value);
@@ -30,14 +30,23 @@ function EnterPlaylistPage() {
             setStatus(1);
 
             // Make a request using Axios
-            const response = await axios.post('http://localhost:5000/send-playlist', link);
+            const response = await axios.post('http://localhost:5000/send-playlist', {"link": link});
             setLink("");
-            console.log(link);
-            // Set the fetched data to the state
-            setStatus(2);
-            setData(response.data);
+            console.log("The response received was...")
+            console.log(response)
+            if (response.status === 200) {
+                console.log("Received a response of 200")
+                setStatus(3);
+                setData(response.data);
+            }
+            else {
+                console.log(`Response was not 200. Received  ${response.status}`)
+                setStatus(2)
+            }
+
         } catch (error) {
             // Set an error if the request fails
+            console.log("Error. Could not connect to server")
             setStatus(-1);
         }
     }
