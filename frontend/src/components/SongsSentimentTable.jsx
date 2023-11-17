@@ -28,7 +28,7 @@ export default function SongsSentimentTable(data) {
     }
 
     return (
-        <TableContainer component={Paper} className="space-below-table">
+        <TableContainer component={Paper}>
             <Table sx={{ minWidth: 20 }} aria-label="simple table">
                 <TableHead>
                     <TableRow className="category-row">

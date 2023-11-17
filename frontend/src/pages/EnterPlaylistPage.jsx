@@ -97,8 +97,9 @@ function EnterPlaylistPage() {
             {status === 2 && <button className="submit-button" onClick={returnHome}>Back to start!</button> }
 
             {status === 3 && <PlaylistSentimentTable table={data} />}
-            {status === 3 && <SongsSentimentTable table={data} /> }
             {status === 3 && <PercentagesTable table={data} /> }
+            {status === 3 && <SongsSentimentTable table={data} /> }
+
             {status === 3 && <button className="submit-button" onClick={returnHome}>Back to start!</button> }
 
 

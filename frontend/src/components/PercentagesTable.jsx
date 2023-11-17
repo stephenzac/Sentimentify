@@ -17,7 +17,7 @@ export default function PercentagesTable(data) {
 
 
     return (
-        <TableContainer component={Paper} >
+        <TableContainer component={Paper} className="space-below-table">
             <Table sx={{ minWidth: 20 }} aria-label="simple table">
                 <TableHead>
                     <TableRow className="category-row">
