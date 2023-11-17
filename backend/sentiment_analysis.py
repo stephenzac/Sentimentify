@@ -42,28 +42,18 @@ class SentimentAnalyzer:
         self.vader = SentimentIntensityAnalyzer()
         self.playlistName = playlistName
         self.final_dict = {"playlist" : {playlistName : {}}, "songs" : {}, "moodPercentages" : {}, "energyPercentages" : {}}
-
-
         self.song_mood_stats = {}
 
 
     """SETTING INFORMATION"""
 
-    #receive lyrics
-    def receive_lyrics(self, lyrics: dict) -> None:
-        self.lyrics = lyrics
+    def receive_information(self, dictionary: dict) -> None:
+        songName = dictionary["songName"]
+        self.lyrics[songName] = dictionary["lyrics"]
+        self.spotify_dictionary[songName] = dictionary["spotifyDictionary"]
 
-
-    #receive Spotify dictionary
-    def receive_dictionary(self, dictionary: dict) -> None:
-        self.spotify_dictionary = dictionary
-
-        for song in self.spotify_dictionary:
-            #initializes final_dict
-            self.final_dict["songs"][song] = {}
-
-            #intializes song_mood_stats
-            self.song_mood_stats[song] = [-1, -1, -1, -1]
+        self.final_dict["songs"][songName] = {}
+        self.song_mood_stats[songName] = [-1, -1, -1, -1]
 
 
 
@@ -79,27 +69,14 @@ class SentimentAnalyzer:
     #add valence to song_stats in -1 to 1 scale
     def calculate_valence(self) -> None:
         for song in self.spotify_dictionary:
-            self.song_mood_stats[song][0] = self.spotify_dictionary[song]["audio_features"][0]["valence"]
+            self.song_mood_stats[song][0] = self.spotify_dictionary[song]["audio_features"]["valence"]
 
 
     #calculate sentiment analysis of a song's lyrics
-    #Do it line by line?
     def calculate_compound_sentiment(self) -> None:
 
         for song in self.lyrics:
             self.song_mood_stats[song][1] = self.vader.polarity_scores(self.lyrics[song])['compound'] * 0.5 + 0.5
-
-        #or
-        # for song in self.lyrics:
-        #     sentiment = 0
-        #     numLines = 0
-        #     lines = self.lyrics[song].split('.')
-
-        #     for line in lines:
-        #         sentiment += self.vader.polarity_scores(line)["compound"]
-        #         numLines += 1
-            
-        #     self.song_mood_stats[song][1] = sentiment / numLines
 
 
     #use compound sentiment and valence to calculate total mood
@@ -123,10 +100,8 @@ class SentimentAnalyzer:
     #use spotify to calculate a song's energy
     def calculate_song_energy(self) -> None:
         for song in self.spotify_dictionary:
-            energy = self.spotify_dictionary[song]["audio_features"][0]["energy"]
-            danceability = self.spotify_dictionary[song]["audio_features"][0]["danceability"]
-            # loudness = self.spotify_dictionary["audio_features"][0]["loudness"]
-            # tempo = self.spotify_dictionary["audio_features"][0]["tempo"]
+            energy = self.spotify_dictionary[song]["audio_features"]["energy"]
+            danceability = self.spotify_dictionary[song]["audio_features"]["danceability"]
 
             total_energy = (energy * 0.8) + (danceability * 0.3)
             if total_energy <= 0.33:
@@ -236,20 +211,7 @@ if __name__ == "__main__":
     #                                             She's all I want and I've waited for so long\
     #                                             Stacy, can't you see? You're just not the girl for me\
     #                                             I know it might be wrong, but I'm in love with Stacy's mom",
-    #                         "Glimpse of Us" : "'Cause sometimes, I look in her eyes\
-    #                                             And that's where I find a glimpse of us\
-    #                                             And I try to fall for her touch\
-    #                                             But I'm thinkin' of the way it was\
-    #                                             Said I'm fine and said I moved on\
-    #                                             I'm only here passing time in her arms\
-    #                                             Hopin' I'll find a glimpse of us\
-    #                                             Tell me he savors your glory\
-    #                                             Does he laugh the way I did?\
-    #                                             Is this a part of your story?\
-    #                                             One that I had never lived\
-    #                                             Maybe one day, you'll feel lonely\
-    #                                             And in his eyes, you'll get a glimpse\
-    #                                             Maybe you'll start slippin' slowly and find me again"
+    #                         "Glimpse of Us" : ""
 
     #                         })
     
@@ -261,3 +223,20 @@ if __name__ == "__main__":
     # analyzer.calculate_playlist_energy()
     # analyzer.calculate_percentages()
     # print(analyzer.get_final_dictionary())
+
+
+    # {"songName" : "Stacy's Mom", 
+    # "spotifyDictionary" : {
+    #                         "audio_features": [
+    #                             {
+    #                             "danceability": 0.652,
+    #                             "energy": 0.945,
+    #                             "valence": 0.823
+    #                             }
+    #                         ]},
+    # "lyrics" : "Stacy, can I come over after school? (After school)\
+    #             We can hang around by the pool (Hang by the pool)\
+    #             Did your mom get back from her business trip? (Business trip)\
+    #             Is she there, or is she trying to give me the slip? (Give me the slip)\
+    #             You know, I'm not the little boy that I used to be\
+    #             I'm all grown up now, baby, can't you see?"}
