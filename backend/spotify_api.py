@@ -103,7 +103,6 @@ def get_track_audio_features(song_id: str) -> dict:
 def get_multiple_audio_features(ids: str) -> dict:
     endpoint = "audio-features?ids="
     endpoint += requests.utils.quote(ids)
-    print(endpoint)
 
     response = make_spotify_request(endpoint)
     return response
