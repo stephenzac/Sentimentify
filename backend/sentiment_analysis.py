@@ -205,58 +205,59 @@ class SentimentAnalyzer:
 
 
 if __name__ == "__main__":
-    analyzer = SentimentAnalyzer("Hello")
+    pass
+    # analyzer = SentimentAnalyzer("Hello")
 
-    analyzer.receive_dictionary({"Stacy's Mom" : {
-                                    "audio_features": [
-                                        {
-                                        "danceability": 0.652,
-                                        "energy": 0.945,
-                                        "valence": 0.823
-                                        }
-                                    ]},
-                                    "Glimpse of Us" : {
-                                        "audio_features": [
-                                        {
-                                        "danceability": 0.506,
-                                        "energy": 0.106,
-                                        "valence": 0.089
-                                        }
-                                    ]}
-                                })
+    # analyzer.receive_dictionary({"Stacy's Mom" : {
+    #                                 "audio_features": [
+    #                                     {
+    #                                     "danceability": 0.652,
+    #                                     "energy": 0.945,
+    #                                     "valence": 0.823
+    #                                     }
+    #                                 ]},
+    #                                 "Glimpse of Us" : {
+    #                                     "audio_features": [
+    #                                     {
+    #                                     "danceability": 0.506,
+    #                                     "energy": 0.106,
+    #                                     "valence": 0.089
+    #                                     }
+    #                                 ]}
+    #                             })
     
-    analyzer.receive_lyrics({"Stacy's Mom" : "Stacy, can I come over after school? (After school)\
-                                                We can hang around by the pool (Hang by the pool)\
-                                                Did your mom get back from her business trip? (Business trip)\
-                                                Is she there, or is she trying to give me the slip? (Give me the slip)\
-                                                You know, I'm not the little boy that I used to be\
-                                                I'm all grown up now, baby, can't you see?\
-                                                Stacy's mom has got it going on\
-                                                She's all I want and I've waited for so long\
-                                                Stacy, can't you see? You're just not the girl for me\
-                                                I know it might be wrong, but I'm in love with Stacy's mom",
-                            "Glimpse of Us" : "'Cause sometimes, I look in her eyes\
-                                                And that's where I find a glimpse of us\
-                                                And I try to fall for her touch\
-                                                But I'm thinkin' of the way it was\
-                                                Said I'm fine and said I moved on\
-                                                I'm only here passing time in her arms\
-                                                Hopin' I'll find a glimpse of us\
-                                                Tell me he savors your glory\
-                                                Does he laugh the way I did?\
-                                                Is this a part of your story?\
-                                                One that I had never lived\
-                                                Maybe one day, you'll feel lonely\
-                                                And in his eyes, you'll get a glimpse\
-                                                Maybe you'll start slippin' slowly and find me again"
+    # analyzer.receive_lyrics({"Stacy's Mom" : "Stacy, can I come over after school? (After school)\
+    #                                             We can hang around by the pool (Hang by the pool)\
+    #                                             Did your mom get back from her business trip? (Business trip)\
+    #                                             Is she there, or is she trying to give me the slip? (Give me the slip)\
+    #                                             You know, I'm not the little boy that I used to be\
+    #                                             I'm all grown up now, baby, can't you see?\
+    #                                             Stacy's mom has got it going on\
+    #                                             She's all I want and I've waited for so long\
+    #                                             Stacy, can't you see? You're just not the girl for me\
+    #                                             I know it might be wrong, but I'm in love with Stacy's mom",
+    #                         "Glimpse of Us" : "'Cause sometimes, I look in her eyes\
+    #                                             And that's where I find a glimpse of us\
+    #                                             And I try to fall for her touch\
+    #                                             But I'm thinkin' of the way it was\
+    #                                             Said I'm fine and said I moved on\
+    #                                             I'm only here passing time in her arms\
+    #                                             Hopin' I'll find a glimpse of us\
+    #                                             Tell me he savors your glory\
+    #                                             Does he laugh the way I did?\
+    #                                             Is this a part of your story?\
+    #                                             One that I had never lived\
+    #                                             Maybe one day, you'll feel lonely\
+    #                                             And in his eyes, you'll get a glimpse\
+    #                                             Maybe you'll start slippin' slowly and find me again"
 
-                            })
+    #                         })
     
-    analyzer.calculate_valence()
-    analyzer.calculate_compound_sentiment()
-    analyzer.calculate_song_mood()
-    analyzer.calculate_song_energy()
-    analyzer.calculate_playlist_mood()
-    analyzer.calculate_playlist_energy()
-    analyzer.calculate_percentages()
-    print(analyzer.get_final_dictionary())
+    # analyzer.calculate_valence()
+    # analyzer.calculate_compound_sentiment()
+    # analyzer.calculate_song_mood()
+    # analyzer.calculate_song_energy()
+    # analyzer.calculate_playlist_mood()
+    # analyzer.calculate_playlist_energy()
+    # analyzer.calculate_percentages()
+    # print(analyzer.get_final_dictionary())
