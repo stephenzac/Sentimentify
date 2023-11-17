@@ -21,8 +21,8 @@ export default function PercentagesTable(data) {
             <Table sx={{ minWidth: 20 }} aria-label="simple table">
                 <TableHead>
                     <TableRow className="category-row">
-                        <TableCell> Mood Category</TableCell>
-                        <TableCell align="right">Percentage</TableCell>
+                        <TableCell sx={{fontWeight: "bold", fontSize: "1em"}}> Mood Category</TableCell>
+                        <TableCell sx={{fontWeight: "bold", fontSize: "1em"}} align="right">Percentage</TableCell>
 
                     </TableRow>
                 </TableHead>
@@ -45,8 +45,8 @@ export default function PercentagesTable(data) {
                 </TableBody>
                 <TableHead>
                     <TableRow className="category-row">
-                        <TableCell> Energy Category</TableCell>
-                        <TableCell align="right">Percentage</TableCell>
+                        <TableCell sx={{fontWeight: "bold", fontSize: "1em"}}> Energy Category</TableCell>
+                        <TableCell sx={{fontWeight: "bold", fontSize: "1em"}} align="right">Percentage</TableCell>
 
                     </TableRow>
                 </TableHead>

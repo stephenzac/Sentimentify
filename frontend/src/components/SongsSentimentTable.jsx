@@ -32,9 +32,9 @@ export default function SongsSentimentTable(data) {
             <Table sx={{ minWidth: 20 }} aria-label="simple table">
                 <TableHead>
                     <TableRow className="category-row">
-                        <TableCell>Song name</TableCell>
-                        <TableCell align="right">mood</TableCell>
-                        <TableCell align="right">energy</TableCell>
+                        <TableCell sx={{fontWeight: "bold", fontSize: "1em"}}>Song name</TableCell>
+                        <TableCell sx={{fontWeight: "bold", fontSize: "1em"}} align="right">Mood</TableCell>
+                        <TableCell sx={{fontWeight: "bold", fontSize: "1em"}} align="right">Energy</TableCell>
 
                     </TableRow>
                 </TableHead>
@@ -48,13 +48,13 @@ export default function SongsSentimentTable(data) {
                             {name}
                         </TableCell>
 
-                            {analysis.mood === "positive" && <TableCell align="right"><InsertEmoticonRoundedIcon /></TableCell> }
-                            {analysis.mood === "neutral" && <TableCell align="right"><SentimentNeutralRoundedIcon /></TableCell> }
-                            {analysis.mood === "negative" && <TableCell align="right"><SentimentDissatisfiedRoundedIcon /></TableCell> }
+                            {analysis.mood === "Positive" && <TableCell align="right"><InsertEmoticonRoundedIcon sx={{color: "green"}}/></TableCell> }
+                            {analysis.mood === "Neutral" && <TableCell align="right"><SentimentNeutralRoundedIcon sx={{color: "orange"}}/></TableCell> }
+                            {analysis.mood === "Negative" && <TableCell align="right"><SentimentDissatisfiedRoundedIcon sx={{color: "red"}}/></TableCell> }
 
-                            {analysis.energy === "high" && <TableCell align="right"><BatteryChargingFullRoundedIcon /></TableCell> }
-                            {analysis.energy === "medium" && <TableCell align="right"><BatteryCharging50RoundedIcon /></TableCell> }
-                            {analysis.energy === "low" && <TableCell align="right"><Battery1BarRoundedIcon /></TableCell> }
+                            {analysis.energy === "High" && <TableCell align="right"><BatteryChargingFullRoundedIcon sx={{color: "green"}}/></TableCell> }
+                            {analysis.energy === "Medium" && <TableCell align="right"><BatteryCharging50RoundedIcon sx={{color: "orange"}}/></TableCell> }
+                            {analysis.energy === "Low" && <TableCell align="right"><Battery1BarRoundedIcon sx={{color: "red"}}/></TableCell> }
                 </TableRow>
                     ))}
                 </TableBody>

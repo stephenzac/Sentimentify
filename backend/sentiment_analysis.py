@@ -91,11 +91,11 @@ class SentimentAnalyzer:
                 mood = (self.song_mood_stats[song][0] * 0.7) + (self.song_mood_stats[song][1] * 0.3)
 
             if mood <= 0.33:
-                self.final_dict["songs"][song]["mood"] = "negative"
+                self.final_dict["songs"][song]["mood"] = "Negative"
             elif mood >= 0.66:
-                self.final_dict["songs"][song]["mood"] = "positive"
+                self.final_dict["songs"][song]["mood"] = "Positive"
             else:
-                self.final_dict["songs"][song]["mood"] = "neutral"
+                self.final_dict["songs"][song]["mood"] = "Neutral"
 
             self.song_mood_stats[song][2] = mood
 
@@ -108,11 +108,11 @@ class SentimentAnalyzer:
 
             total_energy = (energy * 0.8) + (danceability * 0.3)
             if total_energy <= 0.33:
-                self.final_dict["songs"][song]["energy"] = "low"
+                self.final_dict["songs"][song]["energy"] = "Low"
             elif total_energy >= 0.66:
-                self.final_dict["songs"][song]["energy"] = "high"
+                self.final_dict["songs"][song]["energy"] = "High"
             else:
-                self.final_dict["songs"][song]["energy"] = "medium"
+                self.final_dict["songs"][song]["energy"] = "Medium"
 
             self.song_mood_stats[song][3] = total_energy
 
@@ -127,11 +127,11 @@ class SentimentAnalyzer:
             playlistMood += self.song_mood_stats[song][2]
 
         if playlistMood / self.num_songs <= 0.33:
-            self.final_dict["playlist"][self.playlistName]["mood"] = "negative"
+            self.final_dict["playlist"][self.playlistName]["mood"] = "Negative"
         elif playlistMood / self.num_songs >= 0.66:
-            self.final_dict["playlist"][self.playlistName]["mood"] = "positive"
+            self.final_dict["playlist"][self.playlistName]["mood"] = "Positive"
         else:
-            self.final_dict["playlist"][self.playlistName]["mood"] = "neutral"
+            self.final_dict["playlist"][self.playlistName]["mood"] = "Neutral"
 
 
     #calculates the energy of the overall playlist
@@ -141,11 +141,11 @@ class SentimentAnalyzer:
             playlistEnergy += self.song_mood_stats[song][3]
 
         if playlistEnergy / self.num_songs <= 0.33:
-            self.final_dict["playlist"][self.playlistName]["energy"] = "low"
+            self.final_dict["playlist"][self.playlistName]["energy"] = "Low"
         elif playlistEnergy / self.num_songs >= 0.66:
-            self.final_dict["playlist"][self.playlistName]["energy"] = "high"
+            self.final_dict["playlist"][self.playlistName]["energy"] = "High"
         else:
-            self.final_dict["playlist"][self.playlistName]["energy"] = "medium"
+            self.final_dict["playlist"][self.playlistName]["energy"] = "Medium"
 
 
     #calculate percentage of each energy and mood; adds percentages to final_dict
@@ -174,9 +174,9 @@ class SentimentAnalyzer:
         
         # numSongs = len(self.lyrics)
         # print(numSongs)
-        self.final_dict["moodPercentages"]["positive"] = f"{posMood / self.num_songs * 100:.2f}%"
-        self.final_dict["moodPercentages"]["neutral"] = f"{neuMood / self.num_songs * 100:.2f}%"
-        self.final_dict["moodPercentages"]["negative"] = f"{negMood / self.num_songs * 100:.2f}%"
-        self.final_dict["energyPercentages"]["high"] = f"{highEnergy / self.num_songs * 100:.2f}%"
-        self.final_dict["energyPercentages"]["medium"] = f"{medEnergy / self.num_songs * 100:.2f}%"
-        self.final_dict["energyPercentages"]["low"] = f"{lowEnergy / self.num_songs * 100:.2f}%"
+        self.final_dict["moodPercentages"]["Positive"] = f"{posMood / self.num_songs * 100:.2f}%"
+        self.final_dict["moodPercentages"]["Neutral"] = f"{neuMood / self.num_songs * 100:.2f}%"
+        self.final_dict["moodPercentages"]["Negative"] = f"{negMood / self.num_songs * 100:.2f}%"
+        self.final_dict["energyPercentages"]["High"] = f"{highEnergy / self.num_songs * 100:.2f}%"
+        self.final_dict["energyPercentages"]["Medium"] = f"{medEnergy / self.num_songs * 100:.2f}%"
+        self.final_dict["energyPercentages"]["Low"] = f"{lowEnergy / self.num_songs * 100:.2f}%"

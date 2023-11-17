@@ -21,8 +21,6 @@ def send_playlist_link():
     data = request.get_json()
     data = data["link"]
 
-    print(data)
-
     backend_response = main.run(data)
 
     # return status code 400 for invalid playlist links
