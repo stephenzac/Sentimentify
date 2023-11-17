@@ -4,7 +4,10 @@ import lyrics
 import re
 import concurrent.futures
 from sentiment_analysis import SentimentAnalyzer
+from functools import partial
 
+
+sentiment_dict = SentimentAnalyzer("test")
 
 
 def get_playlist_id(playlist_link: str) -> str:
@@ -13,8 +16,9 @@ def get_playlist_id(playlist_link: str) -> str:
     playlist id. If no ID is found (invalid playlist link),
     return None
     """
-    id_regex_pattern = r"playlist\/([a-zA-Z0-9]+)"
+    id_regex_pattern = re.compile("playlist\/([a-zA-Z0-9]+)")
     id_match = re.search(id_regex_pattern, playlist_link)
+
     if id_match:
         return id_match.group(1)
     
@@ -29,7 +33,6 @@ def get_lyrics(item: dict) -> str:
     try:
         title, artists = spotify.get_title_and_artist(item)
         lyric_search = genius.search_song(title, artists)
-        # song_lyrics = lyrics.get_song_lyrics(lyric_search)
 
         found = False
         for hit in lyric_search["response"]["hits"]:
@@ -39,10 +42,10 @@ def get_lyrics(item: dict) -> str:
                     song_lyrics = lyrics.get_song_lyrics(genius_path)
 
                     if song_lyrics == None:
-                        # print(f"No lyrics for {title} - {artist}")
+                        print(f"No lyrics for {title} - {artist}")
                         return None
                     
-                    print(f"Found lyrics for {title} - {artist}")
+                    # print(f"Found lyrics for {title} - {artist}")
                     found = True
                     return song_lyrics
             if found:
@@ -52,32 +55,41 @@ def get_lyrics(item: dict) -> str:
         return None
 
 
-def process_songs(item: dict) -> dict:
+def process_songs(item: dict, sentiment_dict: dict) -> dict:
     """
     Analyze the lyrics and audio features of a track in the playlist
     """
-    song_analyzer = SentimentAnalyzer()
-
-    # for item in track_list:
 
     if item["track"] == None:
         return None
 
+    # Get the song lyrics
     lyrics = get_lyrics(item)
 
     track_id = item["track"]["id"]
     track_attributes = spotify.get_track_audio_features(track_id)
+    # print(f"Track attributes for {track_id}: {track_attributes}")
 
     # Songs without lyrics will be analyzed using just their attributes
+    sentiment_info_dict = {
+        "songName": "",
+        "spotifyDictionary": track_attributes,
+        "lyrics": ""
+    }
+
     if lyrics != None:
-        pass
-        # send lyrics to michelle's class
-        
-        
+        sentiment_info_dict["lyrics"] = lyrics
+
+    sentiment_dict.receive_information(sentiment_info_dict)
+    print(sentiment_dict.num_songs)
+
+
 def run(playlist_link: str) -> dict:
     """
-    The backend program
+    The main backend program
     """
+    global sentiment_dict
+
     playlist_id = get_playlist_id(playlist_link)
 
     # If playlist link is invalid, return None to Flask server
@@ -85,17 +97,27 @@ def run(playlist_link: str) -> dict:
         return None
     
     playlist_name = spotify.get_playlist_info(playlist_id)["name"]
-    print(f"Playlist name: {playlist_name}")
+    # print(f"Playlist name: {playlist_name}")
 
+    # Playlist songs
     playlist_songs = spotify.get_playlist_songs(playlist_id)
     track_list = playlist_songs["items"]
 
-    # MULTIPROCESSING!!!!!!!!
-    final_calc = SentimentAnalyzer()
-    with concurrent.futures.ProcessPoolExecutor() as executor:
-        calculcated_playlist_sentiment = list(executor.map(process_songs, track_list))
+    # Process all songs with MULTIPROCESSING!!!!!
 
-    # return calculcated_playlist_sentiment
+    with concurrent.futures.ProcessPoolExecutor() as executor:
+        partial_process_songs = partial(process_songs, sentiment_dict=sentiment_dict)
+        executor.map(partial_process_songs, track_list)
+    
+    sentiment_dict.calculate_valence()
+    sentiment_dict.calculate_compound_sentiment()
+    sentiment_dict.calculate_song_mood()
+    sentiment_dict.calculate_song_energy()
+    sentiment_dict.calculate_playlist_mood()
+    sentiment_dict.calculate_playlist_energy()
+    sentiment_dict.calculate_percentages()
+    return sentiment_dict.final_dict
+
 
 
 """
@@ -128,22 +150,40 @@ const exampleData = {
 
 }
 """
-    
+
 
 if __name__ == "__main__":
     # driving playlist
     # link = "https://open.spotify.com/playlist/0WdmV3JnNihWiaPdi8MBSz"
 
     # mulan
-    # link = "https://open.spotify.com/playlist/4jetnIc7yJLUJsk1okSWMb?si=a4db66966b864daf"
+    link = "https://open.spotify.com/playlist/4jetnIc7yJLUJsk1okSWMb?si=a4db66966b864daf"
 
     # public simp playlist lol
     # link = "https://open.spotify.com/playlist/0lgr2ATMsioWvaxYYkn2cD?si=14cf972d327a40c3"
 
     # bruno mars
-    link = "https://open.spotify.com/playlist/6Rxa7PgHtUL9YhmWsl7ZRs?si=505a0f8e95e54c13"
+    # link = "https://open.spotify.com/playlist/6Rxa7PgHtUL9YhmWsl7ZRs?si=505a0f8e95e54c13"
 
     # instrumental
     # link = "https://open.spotify.com/playlist/67zVq9i2JaNGeigm115kGF?si=c183f943f0c74724"
 
-    run(link)
+    # skyrim
+    # link = "https://open.spotify.com/playlist/1ANRT7IOKu6PqW7TI5JFcs?si=588f923ba3f04a12"
+
+    # ids = "2ALh2jqA7KldpHMUHvRomw,2NqyjfDXy0XfXCSPXMsKzi,"
+    # print(spotify.get_track_audio_features("5OEXISM55Inhcs4Ea29Iej"))
+
+    print(run(link))
+
+    # {
+    # "glimpse":
+    #     {
+    #         {
+    #             "audio_features": {}
+    #         },
+    #         {
+    #             "lyrics": ""
+    #         }
+    #     }
+    # }
