@@ -46,6 +46,27 @@ function EnterPlaylistPage() {
 
         } catch (error) {
             // Set an error if the request fails
+            if (error.response) {
+                console.log(`Error: A response was received but it was not 200. It was ${error.response.status}`)
+                if (error.response.status === 400) {
+                    setStatus(2);
+                }
+                else {
+                    setStatus(-1);
+                }
+
+            }
+            else if (error.request) {
+                console.log("Error: No response was received")
+                setStatus(-1);
+            }
+            else {
+                console.log("Error: Didn't even make the request")
+                setStatus(-1);
+            }
+
+
+
             console.log("Error. Could not connect to server")
             setStatus(-1);
         }
