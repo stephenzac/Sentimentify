@@ -2,6 +2,8 @@ import main
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 
+PORT = 5000
+
 
 app = Flask(__name__)
 
@@ -33,4 +35,4 @@ def send_playlist_link():
 
 
 if __name__ == "__main__":
-    app.run()
+    app.run(port=PORT)
