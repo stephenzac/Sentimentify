@@ -43,11 +43,14 @@ class SentimentAnalyzer:
         self.playlistName = playlistName
         self.final_dict = {"playlist" : {playlistName : {}}, "songs" : {}, "moodPercentages" : {}, "energyPercentages" : {}}
         self.song_mood_stats = {}
+        self.num_songs = 0
 
 
     """SETTING INFORMATION"""
 
     def receive_information(self, dictionary: dict) -> None:
+        self.num_songs += 1
+
         songName = dictionary["songName"]
         self.lyrics[songName] = dictionary["lyrics"]
         self.spotify_dictionary[songName] = dictionary["spotifyDictionary"]
@@ -169,13 +172,12 @@ class SentimentAnalyzer:
             else:
                 lowEnergy += 1
         
-        numSongs = len(self.final_dict["songs"])
-        self.final_dict["moodPercentages"]["positive"] = f"{posMood / numSongs * 100:.2f}%"
-        self.final_dict["moodPercentages"]["neutral"] = f"{neuMood / numSongs * 100:.2f}%"
-        self.final_dict["moodPercentages"]["negative"] = f"{negMood / numSongs * 100:.2f}%"
-        self.final_dict["energyPercentages"]["high"] = f"{highEnergy / numSongs * 100:.2f}%"
-        self.final_dict["energyPercentages"]["medium"] = f"{medEnergy / numSongs * 100:.2f}%"
-        self.final_dict["energyPercentages"]["low"] = f"{lowEnergy / numSongs * 100:.2f}%"
+        self.final_dict["moodPercentages"]["positive"] = f"{posMood / self.num_songs * 100:.2f}%"
+        self.final_dict["moodPercentages"]["neutral"] = f"{neuMood / self.num_songs * 100:.2f}%"
+        self.final_dict["moodPercentages"]["negative"] = f"{negMood / self.num_songs * 100:.2f}%"
+        self.final_dict["energyPercentages"]["high"] = f"{highEnergy / self.num_songs * 100:.2f}%"
+        self.final_dict["energyPercentages"]["medium"] = f"{medEnergy / self.num_songs * 100:.2f}%"
+        self.final_dict["energyPercentages"]["low"] = f"{lowEnergy / self.num_songs * 100:.2f}%"
 
 
 
