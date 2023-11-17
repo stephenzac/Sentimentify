@@ -20,13 +20,15 @@ export default function DescriptionAccordion() {
                 >
                     <Typography sx={{
                         fontFamily: "Charter, serif",
-                        fontWeight: "bold"
+                        fontWeight: "bold",
+                        color: "whitesmoke"
                     }}>Description</Typography>
                 </AccordionSummary>
                 <AccordionDetails>
                     <Typography sx={{
                         fontFamily: "Charter, serif",
-                        fontWeight: "bold"}}>
+                        fontWeight: "bold",
+                        color: "whitesmoke"}}>
                         Welcome to Sentimentify! This is a software that takes your spotify playlist link and puts all your songs through a sentiment tester. Then, we will tell you the mood of the songs.
                     </Typography>
                 </AccordionDetails>

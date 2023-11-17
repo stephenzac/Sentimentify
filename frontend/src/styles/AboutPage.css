@@ -23,9 +23,11 @@
 .about-page h3 {
     font-family: Charter, serif;
     margin-bottom: 0;
+    color: whitesmoke;
 }
 
 .about-page p {
     width: 70%;
     font-family: Charter, serif;
+    color: whitesmoke;
 }
