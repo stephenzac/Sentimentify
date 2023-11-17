@@ -7,9 +7,6 @@ from sentiment_analysis import SentimentAnalyzer
 from functools import partial
 
 
-sentiment_dict = SentimentAnalyzer("test")
-
-
 def get_playlist_id(playlist_link: str) -> str:
     """
     Search the given link using regex for a Spotify
@@ -42,10 +39,8 @@ def get_lyrics(item: dict) -> str:
                     song_lyrics = lyrics.get_song_lyrics(genius_path)
 
                     if song_lyrics == None:
-                        print(f"No lyrics for {title} - {artist}")
                         return None
                     
-                    # print(f"Found lyrics for {title} - {artist}")
                     found = True
                     return song_lyrics
             if found:
@@ -68,27 +63,24 @@ def process_songs(item: dict, sentiment_dict: dict) -> dict:
 
     track_id = item["track"]["id"]
     track_attributes = spotify.get_track_audio_features(track_id)
-    # print(f"Track attributes for {track_id}: {track_attributes}")
 
-    # Songs without lyrics will be analyzed using just their attributes
     sentiment_info_dict = {
-        "songName": "",
+        "songName": item["track"]["name"],
         "spotifyDictionary": track_attributes,
         "lyrics": ""
     }
 
+    # Songs without lyrics will be analyzed using just their attributes
     if lyrics != None:
         sentiment_info_dict["lyrics"] = lyrics
 
-    sentiment_dict.receive_information(sentiment_info_dict)
-    print(sentiment_dict.num_songs)
+    return sentiment_info_dict
 
 
 def run(playlist_link: str) -> dict:
     """
     The main backend program
     """
-    global sentiment_dict
 
     playlist_id = get_playlist_id(playlist_link)
 
@@ -103,12 +95,18 @@ def run(playlist_link: str) -> dict:
     playlist_songs = spotify.get_playlist_songs(playlist_id)
     track_list = playlist_songs["items"]
 
-    # Process all songs with MULTIPROCESSING!!!!!
+    sentiment_dict = SentimentAnalyzer(playlist_name)
 
+    # Process all songs with multiprocessing
     with concurrent.futures.ProcessPoolExecutor() as executor:
         partial_process_songs = partial(process_songs, sentiment_dict=sentiment_dict)
-        executor.map(partial_process_songs, track_list)
+        all_dicts = list(executor.map(partial_process_songs, track_list))
+
+    # print(all_dicts)
     
+    for info_dict in all_dicts:
+        sentiment_dict.receive_information(info_dict)
+
     sentiment_dict.calculate_valence()
     sentiment_dict.calculate_compound_sentiment()
     sentiment_dict.calculate_song_mood()
@@ -117,39 +115,6 @@ def run(playlist_link: str) -> dict:
     sentiment_dict.calculate_playlist_energy()
     sentiment_dict.calculate_percentages()
     return sentiment_dict.final_dict
-
-
-
-"""
-const exampleData = {
-    "playlist": {
-        "GUTS": {
-            "mood": "negative", "energy": "high"
-        }
-    },
-    "songs": {
-        "Glimpse Of Us": {"mood": "negative", "energy": "low"},
-        "Stacy's Mom": {"mood": "positive", "energy": "high"},
-        "Locked Out Of Heaven": {"mood": "positive", "energy": "high"},
-        "Dandelions": {"mood": "positive", "energy": "medium"},
-        "Word Up": {"mood": "neutral", "energy": "medium"},
-        "Very long song ": {"mood": "neutral", "energy": "medium"},
-        "Bad Romance": {"mood": "neutral", "energy": "high"},
-
-    },
-    "moodPercentages": {
-        "happy": 0.1,
-        "neutral": 0.5,
-        "sad": 0.4
-    },
-    "energyPercentages": {
-        "high": 0.4,
-        "medium": 0.1,
-        "low": 0.5
-    }
-
-}
-"""
 
 
 if __name__ == "__main__":
@@ -175,15 +140,3 @@ if __name__ == "__main__":
     # print(spotify.get_track_audio_features("5OEXISM55Inhcs4Ea29Iej"))
 
     print(run(link))
-
-    # {
-    # "glimpse":
-    #     {
-    #         {
-    #             "audio_features": {}
-    #         },
-    #         {
-    #             "lyrics": ""
-    #         }
-    #     }
-    # }

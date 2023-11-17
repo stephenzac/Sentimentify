@@ -25,8 +25,7 @@ def make_spotify_request(endpoint: str) -> dict:
         data = response.json()
         return data
     else:
-        print(response.text)
-        return None
+        print(f"{response.text}")
 
 
 def get_spotify_auth_token() -> str:
@@ -101,6 +100,10 @@ def get_track_audio_features(song_id: str) -> dict:
     return response
 
 
-if __name__ == "__main__":
-    # print(get_playlist_songs("4jetnIc7yJLUJsk1okSWMb"))
-    get_playlist_songs("4jetnIc7yJLUJsk1okSWMb")
+def get_multiple_audio_features(ids: str) -> dict:
+    endpoint = "audio-features?ids="
+    endpoint += requests.utils.quote(ids)
+    print(endpoint)
+
+    response = make_spotify_request(endpoint)
+    return response
