@@ -64,6 +64,9 @@ def process_songs(item: dict, sentiment_dict: dict) -> dict:
     track_id = item["track"]["id"]
     track_attributes = spotify.get_track_audio_features(track_id)
 
+    if track_attributes == None:
+        return None
+
     sentiment_info_dict = {
         "songName": item["track"]["name"],
         "spotifyDictionary": track_attributes,
