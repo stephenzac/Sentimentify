@@ -172,8 +172,6 @@ class SentimentAnalyzer:
             else:
                 lowEnergy += 1
         
-        # numSongs = len(self.lyrics)
-        # print(numSongs)
         self.final_dict["moodPercentages"]["Positive"] = f"{posMood / self.num_songs * 100:.2f}%"
         self.final_dict["moodPercentages"]["Neutral"] = f"{neuMood / self.num_songs * 100:.2f}%"
         self.final_dict["moodPercentages"]["Negative"] = f"{negMood / self.num_songs * 100:.2f}%"
