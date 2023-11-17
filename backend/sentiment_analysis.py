@@ -72,7 +72,7 @@ class SentimentAnalyzer:
     #add valence to song_stats in -1 to 1 scale
     def calculate_valence(self) -> None:
         for song in self.spotify_dictionary:
-            self.song_mood_stats[song][0] = self.spotify_dictionary[song]["audio_features"]["valence"]
+            self.song_mood_stats[song][0] = self.spotify_dictionary[song]["valence"]
 
 
     #calculate sentiment analysis of a song's lyrics
@@ -103,8 +103,8 @@ class SentimentAnalyzer:
     #use spotify to calculate a song's energy
     def calculate_song_energy(self) -> None:
         for song in self.spotify_dictionary:
-            energy = self.spotify_dictionary[song]["audio_features"]["energy"]
-            danceability = self.spotify_dictionary[song]["audio_features"]["danceability"]
+            energy = self.spotify_dictionary[song]["energy"]
+            danceability = self.spotify_dictionary[song]["danceability"]
 
             total_energy = (energy * 0.8) + (danceability * 0.3)
             if total_energy <= 0.33:
@@ -172,6 +172,8 @@ class SentimentAnalyzer:
             else:
                 lowEnergy += 1
         
+        # numSongs = len(self.lyrics)
+        # print(numSongs)
         self.final_dict["moodPercentages"]["positive"] = f"{posMood / self.num_songs * 100:.2f}%"
         self.final_dict["moodPercentages"]["neutral"] = f"{neuMood / self.num_songs * 100:.2f}%"
         self.final_dict["moodPercentages"]["negative"] = f"{negMood / self.num_songs * 100:.2f}%"
@@ -185,37 +187,23 @@ if __name__ == "__main__":
     pass
     # analyzer = SentimentAnalyzer("Hello")
 
-    # analyzer.receive_dictionary({"Stacy's Mom" : {
-    #                                 "audio_features": [
-    #                                     {
-    #                                     "danceability": 0.652,
-    #                                     "energy": 0.945,
-    #                                     "valence": 0.823
-    #                                     }
-    #                                 ]},
-    #                                 "Glimpse of Us" : {
-    #                                     "audio_features": [
-    #                                     {
-    #                                     "danceability": 0.506,
-    #                                     "energy": 0.106,
-    #                                     "valence": 0.089
-    #                                     }
-    #                                 ]}
-    #                             })
-    
-    # analyzer.receive_lyrics({"Stacy's Mom" : "Stacy, can I come over after school? (After school)\
+    # analyzer.receive_information({"songName" : "Stacy's Mom",
+    #                               "spotifyDictionary": {"audio_features" : {"danceability" : 0.358, "energy" : 0.256, "valence" : 0.624}},
+    #                               "lyrics" : "Stacy, can I come over after school? (After school)\
     #                                             We can hang around by the pool (Hang by the pool)\
     #                                             Did your mom get back from her business trip? (Business trip)\
     #                                             Is she there, or is she trying to give me the slip? (Give me the slip)\
     #                                             You know, I'm not the little boy that I used to be\
-    #                                             I'm all grown up now, baby, can't you see?\
-    #                                             Stacy's mom has got it going on\
-    #                                             She's all I want and I've waited for so long\
-    #                                             Stacy, can't you see? You're just not the girl for me\
-    #                                             I know it might be wrong, but I'm in love with Stacy's mom",
-    #                         "Glimpse of Us" : ""
-
-    #                         })
+    #                                             I'm all grown up now, baby, can't you see?"})
+    
+    # analyzer.receive_information({"songName" : "Joe's Dad",
+    #                               "spotifyDictionary": {"audio_features" : {"danceability" : 0.358, "energy" : 0.256, "valence" : 0.624}},
+    #                               "lyrics" : "Stacy, can I come over after school? (After school)\
+    #                                             We can hang around by the pool (Hang by the pool)\
+    #                                             Did your mom get back from her business trip? (Business trip)\
+    #                                             Is she there, or is she trying to give me the slip? (Give me the slip)\
+    #                                             You know, I'm not the little boy that I used to be\
+    #                                             I'm all grown up now, baby, can't you see?"})
     
     # analyzer.calculate_valence()
     # analyzer.calculate_compound_sentiment()
