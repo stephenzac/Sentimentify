@@ -9,6 +9,11 @@ client_id = os.environ.get("GENIUS_CLIENT_ID")
 
 
 def make_genius_request(endpoint: str, params: dict) -> dict:
+    """
+    Given an endpoint and query paramters, call the
+    Genius API at the given endpoint and 
+    return the response as a JSON object
+    """
     base_url = "https://api.genius.com/" + endpoint
     
     response = requests.get(base_url, params=params)
