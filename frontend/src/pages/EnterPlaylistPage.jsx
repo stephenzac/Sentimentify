@@ -32,13 +32,21 @@ function EnterPlaylistPage() {
             // Make a request using Axios
             const response = await axios.post('http://localhost:5000/send-playlist', {"link": link});
             setLink("");
+            console.log("The response received was...")
             console.log(response)
-            console.log(link);
-            // Set the fetched data to the state
-            setStatus(3);
-            setData(response.data);
+            if (response.status === 200) {
+                console.log("Received a response of 200")
+                setStatus(3);
+                setData(response.data);
+            }
+            else {
+                console.log(`Response was not 200. Received  ${response.status}`)
+                setStatus(2)
+            }
+
         } catch (error) {
             // Set an error if the request fails
+            console.log("Error. Could not connect to server")
             setStatus(-1);
         }
     }
