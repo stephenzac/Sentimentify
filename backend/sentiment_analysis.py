@@ -158,16 +158,16 @@ class SentimentAnalyzer:
         lowEnergy = 0
 
         for song in self.final_dict["songs"]:
-            if self.final_dict["songs"][song]["mood"] == "positive":
+            if self.final_dict["songs"][song]["mood"] == "Positive":
                 posMood +=1
-            elif self.final_dict["songs"][song]["mood"] == "neutral":
+            elif self.final_dict["songs"][song]["mood"] == "Neutral":
                 neuMood += 1
             else:
                 negMood += 1
             
-            if self.final_dict["songs"][song]["energy"] == "high":
+            if self.final_dict["songs"][song]["energy"] == "High":
                 highEnergy += 1
-            elif self.final_dict["songs"][song]["energy"] == "medium":
+            elif self.final_dict["songs"][song]["energy"] == "Medium":
                 medEnergy += 1
             else:
                 lowEnergy += 1
