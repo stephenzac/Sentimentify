@@ -23,7 +23,7 @@
 }
 
 .title {
-    font-family: "Apple SD Gothic Neo", serif;
+    font-family: verdana, serif;
     font-size: 1.5em;
     margin-left: 1em;
     margin-right: 1em;
@@ -54,7 +54,7 @@
     font-size: 1em;
     color: whitesmoke;
     padding: 0.5em 1em;
-    font-family: Futura, serif;
+    font-family: verdana, serif;
     font-weight: bold;
 }
 

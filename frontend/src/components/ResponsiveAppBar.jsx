@@ -105,10 +105,10 @@ function ResponsiveAppBar() {
                             }}
                         >
                             <MenuItem key="Enter Playlist" onClick={navigateToHomePage}>
-                                <Typography textAlign="center" sx={{fontFamily: "Heiti SC, serif"}}>Enter Playlist</Typography>
+                                <Typography textAlign="center" sx={{fontFamily: "verdana, serif"}}>Enter Playlist</Typography>
                             </MenuItem>
                             <MenuItem key="About" onClick={navigateToAboutPage}>
-                                <Typography textAlign="center" sx={{fontFamily: "Heiti SC, serif"}}>About</Typography>
+                                <Typography textAlign="center" sx={{fontFamily: "verdana, serif"}}>About</Typography>
                             </MenuItem>
 
                         </Menu>
@@ -135,10 +135,10 @@ function ResponsiveAppBar() {
                     </Typography>
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                         <MenuItem key="Enter Playlist" onClick={navigateToHomePage}>
-                            <Typography textAlign="center" sx={{fontFamily: "Heiti SC, serif"}} >Enter Playlist</Typography>
+                            <Typography textAlign="center" sx={{fontFamily: "verdana, serif"}} >Enter Playlist</Typography>
                         </MenuItem>
                         <MenuItem key="About" onClick={navigateToAboutPage}>
-                            <Typography textAlign="center" sx={{fontFamily: "Heiti SC, serif"}}>About</Typography>
+                            <Typography textAlign="center" sx={{fontFamily: "verdana, serif"}}>About</Typography>
                         </MenuItem>
                     </Box>
 

@@ -9,7 +9,7 @@ import axios from "axios";
 
 import LinearIndeterminate from "../components/LinearIndeterminate.jsx";
 import SongsSentimentTable from "../components/SongsSentimentTable.jsx";
-import PlaylistSentimentTable from "../components/PaylistSentimentTable.jsx";
+import PlaylistSentimentTable from "../components/PlaylistSentimentTable.jsx";
 import PercentagesTable from "../components/PercentagesTable.jsx";
 import exampleData from "../assets/example.jsx";
 

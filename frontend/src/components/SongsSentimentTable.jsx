@@ -32,9 +32,9 @@ export default function SongsSentimentTable(data) {
             <Table sx={{ minWidth: 20 }} aria-label="simple table">
                 <TableHead>
                     <TableRow className="category-row">
-                        <TableCell sx={{fontWeight: "bold", fontSize: "1em"}}>Song name</TableCell>
-                        <TableCell sx={{fontWeight: "bold", fontSize: "1em"}} align="right">Mood</TableCell>
-                        <TableCell sx={{fontWeight: "bold", fontSize: "1em"}} align="right">Energy</TableCell>
+                        <TableCell sx={{fontWeight: "bold", fontSize: "1em", fontFamily: "verdana, arial"}}>Song name</TableCell>
+                        <TableCell sx={{fontWeight: "bold", fontSize: "1em", fontFamily: "verdana, arial"}} align="right">Mood</TableCell>
+                        <TableCell sx={{fontWeight: "bold", fontSize: "1em", fontFamily: "verdana, arial"}} align="right">Energy</TableCell>
 
                     </TableRow>
                 </TableHead>
@@ -44,7 +44,7 @@ export default function SongsSentimentTable(data) {
                             key={name}
                             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                             >
-                        <TableCell component="th" scope="row">
+                        <TableCell component="th" scope="row" sx={{fontFamily: "verdana, arial", fontSize: "1em"}}>
                             {name}
                         </TableCell>
 
