@@ -73,13 +73,18 @@ function EnterPlaylistPage() {
         setStatus(0);
     }
 
+    function enterKey(event) {
+        if (event.key === "Enter") {
+            sendLink();
+        }
+    }
 
     return  (
         <div id="enter-playlist-page">
 
             {status === 0 && <img className="title-logo" src={SpotifyLogo} alt="spotify logo" /> }
             {status === 0 && <h1 className="title">Enter playlist link</h1> }
-            {status === 0 && <input className="playlist-link-input" name="playlist-link" value={link} onChange={onInputChange}/> }
+            {status === 0 && <input className="playlist-link-input" name="playlist-link" value={link} onChange={onInputChange} onKeyDown={enterKey}/> }
             {status === 0 && <button className="submit-button" onClick={sendLink}>Get Sentiment!</button> }
             {status === 0 && <DescriptionAccordion /> }
 
