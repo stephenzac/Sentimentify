@@ -20,10 +20,14 @@ export default function PlaylistSentimentTable(data) {
     let fullData = data.table;
     if (fullData === null) { fullData = nullData }
     const playlist = fullData.playlist;
+    const imgURL = fullData.imgURL;
 
 
     return (
         <TableContainer component={Paper} className="space-below-table">
+
+            <img src={imgURL} alt="Playlist cover image" />
+
             <Table sx={{ minWidth: 20 }} aria-label="simple table">
                 <TableHead>
                     <TableRow className="category-row">
