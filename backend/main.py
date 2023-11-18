@@ -95,6 +95,7 @@ def run(playlist_link: str) -> dict:
         return None
     
     playlist_name = playlist_response["name"]
+    image_url = playlist_response["images"][0]["url"]
 
     # Playlist songs
     playlist_songs = spotify.get_playlist_songs(playlist_id)
@@ -120,4 +121,8 @@ def run(playlist_link: str) -> dict:
     sentiment_dict.calculate_playlist_mood()
     sentiment_dict.calculate_playlist_energy()
     sentiment_dict.calculate_percentages()
-    return sentiment_dict.final_dict
+
+    final = sentiment_dict.final_dict
+    final["imgURL"] = image_url
+
+    return final
