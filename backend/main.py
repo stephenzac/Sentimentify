@@ -94,6 +94,7 @@ def run(playlist_link: str) -> dict:
     if playlist_id == None or playlist_response == None:
         return None
     
+    # Playlist name and image URL
     playlist_name = playlist_response["name"]
     image_url = playlist_response["images"][0]["url"]
 
