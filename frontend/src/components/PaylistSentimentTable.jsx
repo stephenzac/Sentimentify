@@ -26,7 +26,7 @@ export default function PlaylistSentimentTable(data) {
     return (
         <TableContainer component={Paper} className="space-below-table">
 
-            <img src={imgURL} alt="Playlist cover image" />
+            <img src={imgURL} style={{width: "50%", margin: "0 auto"}} alt="Playlist cover image" />
 
             <Table sx={{ minWidth: 20 }} aria-label="simple table">
                 <TableHead>
