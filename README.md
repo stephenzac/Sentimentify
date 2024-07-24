@@ -19,28 +19,3 @@ to make parallel API calls drastically sped up execution of the application.
 * Dealing with unexpected behaviors like API calls that returned
 errors, or unexpected return values from these calls was difficult to deal with, but by testing different playlists of varying lengths and
 song types, we were able to test for different kinds of program behavior. 
-
-
-## 💻 Running and using Sentimentify: frontend
-After cloning from github, ```cd``` to the ```/frontend``` folder and install dependencies with the command:
-```bash
-npm install
-```
-
-To run the frontend, ```cd``` to the ```/frontend``` folder and run the command:
-```bash
-npm run dev
-```
-
-## 💻 Running and using Sentimentify: backend
-In the terminal, ```cd``` into the ```/backend/Scripts``` folder, and run the command:
-```bash
-activate
-```
-
-Then, ```cd``` back to the ```/backend``` folder and run the command:
-```bash
-flask run
-```
-
-You should be able to go to your browser, go to ```localhost:5000``` and use Sentimentify!
